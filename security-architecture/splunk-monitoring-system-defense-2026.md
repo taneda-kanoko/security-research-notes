@@ -23,8 +23,6 @@
 
 ##### Attack Mechanism（攻撃メカニズム）
 
-（概念的な流れのみ。具体的なコード・コマンドは含めない）
-
 1. 攻撃者が Splunk Web (8000番) の未認証エンドポイントへ到達
 2. sidecar の recovery 用エンドポイント（backup / restore）を呼ぶ
 3. database パラメータに PostgreSQL 接続文字列を注入し、接続先を上書き
