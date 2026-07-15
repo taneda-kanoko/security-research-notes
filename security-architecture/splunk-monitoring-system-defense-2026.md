@@ -49,12 +49,17 @@
 
 **H1: Detection outside Splunk succeeds only when the alert path itself is independent of Splunk**
 
-- 検知指標:
+- 観測点で観察できる検知指標:
   - Unauthenticated HTTP 200 responses to the PostgreSQL recovery endpoints
   - PostgreSQL connection-string parameters (hostaddr / passfile) appearing in HTTP request bodies
   - Outbound TCP connections to port 5432 originating from Splunk hosts
 - 根拠: 攻撃 (1)〜(3) は Splunk 前段の通信経路を通過するため、Splunk 外の観測点で観測可能
 - ログソース: WAF（未認証200応答パターン）／ NetFlow（外向き5432通信）／ FW（通信ポリシー違反）
+
+**成立条件（アラート経路の独立性）**:
+
+- Alerts from these observation points must not flow into the same Splunk instance that could be compromised
+- Independent notification channels (email, external services, secondary SIEM) are required to preserve detection results after Splunk compromise
 
 **検知が困難なシグナル**:
 
