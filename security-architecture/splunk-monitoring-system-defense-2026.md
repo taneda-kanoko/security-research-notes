@@ -43,8 +43,6 @@
 
 ##### Detection Hypothesis（検知仮説）
 
-（Pre-Lab Simulation の結果を反映。検知できるもの・できないものを正直に記載）
-
 **H1: Detection outside Splunk succeeds only when the alert path itself is independent of Splunk**
 
 - 観測点で観察できる検知指標:
