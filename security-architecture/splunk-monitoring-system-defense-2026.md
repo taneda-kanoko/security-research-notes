@@ -88,33 +88,30 @@
 
 ##### Lessons Learned（教訓）
 
-**Detection philosophy shift: from element/relationship to observer redundancy**
+**検知思想の転換：element/relationship から observer redundancy へ**
 
-Past research (axios, npm squatting, LOLBins, PAN-OS) shared the pattern
-"legitimate elements, anomalous relationships" — detection required looking
-at relationships rather than elements.
+過去の研究（axios, npm squatting, LOLBins, PAN-OS）は「正規な要素、異常な関係
+（legitimate elements, anomalous relationships）」という共通パターンを持ち、
+検知は要素ではなく関係を見ることで成立していた。
 
-CVE-2026-20253 introduces a different challenge: the monitoring system itself
-is the target. When the observer (Splunk) can be compromised, relationship-based
-detection becomes unreliable — not because the principle is wrong, but because
-the observer applying it cannot be trusted.
+CVE-2026-20253 はこれと異なる課題を突きつける。監視システム自身が攻撃対象になる
+場合だ。観測者（Splunk）が侵害され得るとき、関係ベースの検知は信頼できなくなる。
+原理が誤っているのではなく、原理を適用する観測者を信頼できないからである。
 
-This suggests a higher-order principle for security architecture:
+ここから、セキュリティアーキテクチャの上位原則が導かれる。
 
-**Observer redundancy**: Detection systems must be built with independent
-observation points, independent alert channels, and independent log storage.
-A single monitoring system, however sophisticated, becomes a single point of
-failure once compromised.
+**Observer redundancy（監視系冗長化）**: 検知システムは、独立した観測点・独立した
+通知経路・独立したログ保存を前提に構築しなければならない。単一の監視システムは、
+どれほど高度でも、侵害された瞬間に単一障害点になる。
 
-The three layers:
+独立性を担保すべき3つの層：
 
-1. **Independent observation points** (WAF, NetFlow, FW, secondary SIEM)
-2. **Independent alert channels** (email, Slack, external notification services)
-3. **Independent log storage** (WORM storage, object storage replicas)
+1. **観測点の独立**（WAF / NetFlow / FW / セカンダリ SIEM）
+2. **通知経路の独立**（メール / Slack / 外部通知サービス）
+3. **ログ保存の独立**（WORM ストレージ / オブジェクトストレージ複製）
 
-Merely adding a WAF is insufficient if the WAF alerts flow into the same
-Splunk that could be compromised. The independence must extend across all
-three layers.
+WAF を追加するだけでは不十分である。その WAF のアラートが、侵害され得る同じ Splunk
+に流れ込むなら意味がない。独立性は3つの層すべてに及ばなければならない。
 
 ##### Prediction Accuracy（予測精度の振り返り）
 
