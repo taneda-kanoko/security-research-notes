@@ -1,6 +1,6 @@
 # security-research-notes
 
-インフラエンジニア（3年目）として実務を行いながら、セキュリティエンジニアへのキャリア転換に向けて個人研究を進めています。  
+インフラエンジニアとして Linux（RHEL）サーバの構築・設計に従事したのち、現在はセキュリティエンジニアへのキャリア転換に向けて個人研究を進めています。  
 MITRE ATT&CK フレームワークに基づき、攻撃・防御両面からの分析を記録しています。
 
 ---
@@ -101,7 +101,7 @@ Phase D │ 反事実分析  ── もし攻撃者が〇〇だったら何が�
 | LLM | Ollama (ローカル実行) — APIコスト0 |
 | DB | SQLite |
 | API | Flask |
-| 脅威データ | CISA KEV, NVD CVE API, GitHub Advisory |
+| 脅威データ | CISA KEV, NVD CVE API, GitHub（公開PoCリポジトリの検出） |
 | フレームワーク | MITRE ATT&CK |
 | 通知 | Slack Webhook |
 | ナレッジ管理 | Obsidian (Markdown) |
